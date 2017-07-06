@@ -1,10 +1,14 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png">
-    <router-view></router-view> -->
     <!-- <h1>{{title}}</h1> -->
-    <h1 v-text = "title2"></h1>
-    <h1 v-html = "title2"></h1>
+    <h1 v-text = "title"></h1>
+    <ul>
+    <!-- 此时 <li class = "thisisLiClass"> </li> -->
+    <!-- <li v-for = "item in items" v-bind:class="liClass">  -->
+    <li v-for = "item in items" v-bind:class="{finished:item.isFinished}">
+        {{item.label}}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -13,7 +17,17 @@
     data () {
       return {
         title: 'this is a todolist',
-        title2: '<span>?<span>this is a todolist - v-text & v-html 的区别'
+        items:[
+        {
+          label: 'coding',
+          isFinished: false
+        },
+        {
+          label: 'walking',
+          isFinished: true
+        }
+        ],
+        liClass:'thisisLiClass'
       }
     }
   }
@@ -21,6 +35,9 @@
 </script>
 
 <style>
+  .finished{
+    text-decoration: underline;
+  }
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

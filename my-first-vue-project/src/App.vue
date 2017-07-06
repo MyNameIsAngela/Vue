@@ -2,6 +2,7 @@
   <div id="app">
     <!-- <h1>{{title}}</h1> -->
     <h1 v-text = "title"></h1>
+    <input v-model="newItem" @keyup.enter="addNew">
     <ul>
       <!-- 此时 <li class = "thisisLiClass"> </li> -->
       <!-- <li v-for = "item in items" v-bind:class="liClass">  -->
@@ -17,24 +18,23 @@
     data () {
       return {
         title: 'this is a todolist',
-        items:[
-        {
-          label: 'coding',
-          isFinished: false
-        },
-        {
-          label: 'walking',
-          isFinished: true
-        }
-        ],
-        liClass:'thisisLiClass'
+        items:[],
+        newItem:''
       }
     } ,//end data
     methods:{
       toggleFinish: function(item){
         item.isFinished = !item.isFinished;
+      },
+      addNew:function(){
+        this.items.push({
+          label: this.newItem,
+          isFinished: false
+        });
+        this.newItem = '';
       }
     }//end methods
+
   }
 
 </script>

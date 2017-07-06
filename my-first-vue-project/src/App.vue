@@ -14,14 +14,25 @@
 </template>
 
 <script>
+// 此时 调用Store 
+import Store from './store' 
+console.log(Store)
   export default {
     data () {
       return {
         title: 'this is a todolist',
-        items:[],
+        items: Store.fetch(),
         newItem:''
       }
     } ,//end data
+    watch:{
+      items:{
+        handler:function(items){
+          Store.save(items)
+        },
+        deep:true
+      }
+    },
     methods:{
       toggleFinish: function(item){
         item.isFinished = !item.isFinished;

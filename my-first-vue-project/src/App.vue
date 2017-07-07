@@ -10,14 +10,13 @@
         {{item.label}}
       </li>
     </ul>
-    <components-a msgfromfather="you die!">
-      
-    </components-a>
+    <h1>child tells me : {{childWords}}</h1>
+    <components-a msgfromfather="you die!"  v-on:child-tell-me-something='listenToMyBoy'></components-a>
   </div>
 </template>
 
 <script>
-// 此时 调用Store 
+  // 此时 调用Store 
 import Store from './store' 
 import ComponentsA from './components/componentsA'
 console.log(Store)
@@ -26,7 +25,8 @@ console.log(Store)
       return {
         title: 'this is a todolist',
         items: Store.fetch(),
-        newItem:''
+        newItem:'',
+        childWords:''
       }
     } ,//end data
     components:{ComponentsA},
@@ -48,11 +48,12 @@ console.log(Store)
           isFinished: false
         });
         this.newItem = '';
+      },
+      listenToMyBoy:function(msg){
+        this.childWords = msg; 
       }
     }//end methods
-
   }
-
 </script>
 
 <style>

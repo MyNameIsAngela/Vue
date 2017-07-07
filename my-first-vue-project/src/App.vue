@@ -10,12 +10,16 @@
         {{item.label}}
       </li>
     </ul>
+    <components-a msgfromfather="you die!">
+      
+    </components-a>
   </div>
 </template>
 
 <script>
 // 此时 调用Store 
 import Store from './store' 
+import ComponentsA from './components/componentsA'
 console.log(Store)
   export default {
     data () {
@@ -25,6 +29,7 @@ console.log(Store)
         newItem:''
       }
     } ,//end data
+    components:{ComponentsA},
     watch:{
       items:{
         handler:function(items){
